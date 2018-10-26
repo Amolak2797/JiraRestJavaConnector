@@ -1,7 +1,10 @@
 package com.anthem.jiraTool;
 
 import java.net.URI;
+import java.util.regex.Pattern;
 
+import com.atlassian.httpclient.api.HttpClient;
+import com.atlassian.httpclient.api.Request;
 import com.atlassian.jira.rest.client.IssueRestClient;
 import com.atlassian.jira.rest.client.JiraRestClient;
 import com.atlassian.jira.rest.client.JiraRestClientFactory;
@@ -47,6 +50,7 @@ public class JiraConnector {
 		JiraRestClientFactory factory = new AsynchronousJiraRestClientFactory();
 		URI uri = new URI(JIRA_URI);
 		JiraRestClient client = factory.createWithBasicHttpAuthentication(uri, USERNAME, PASSWORD);
+		
 
 		// Invoke the JRJC Client
 		Promise<User> promise = client.getUserClient().getUser(USERNAME);
