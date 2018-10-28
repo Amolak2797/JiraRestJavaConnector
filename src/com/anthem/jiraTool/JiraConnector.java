@@ -1,5 +1,6 @@
 package com.anthem.jiraTool;
 
+import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
@@ -75,7 +76,9 @@ public class JiraConnector {
 		while (attachmentIteraor.hasNext()) {
 			Attachment attachment = attachmentIteraor.next();
 			System.out.println(attachment.getContentUri());
-			Runtime.getRuntime().exec(new String[] { "cmd", "/c", "start chrome " + attachment.getContentUri() });
+			//Runtime.getRuntime().exec(new String[] { "cmd", "/c", "start chrome " + attachment.getContentUri() });
+			//Runtime.getRuntime().exec("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", new String[]{attachment.getContentUri()+""});
+			Desktop.getDesktop().browse(attachment.getContentUri());
 		}
 
 	}
