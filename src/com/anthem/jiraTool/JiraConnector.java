@@ -1,9 +1,17 @@
 package com.anthem.jiraTool;
 
 import java.awt.Desktop;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Iterator;
+
+import org.apache.commons.io.FileUtils;
 
 import com.atlassian.jira.rest.client.IssueRestClient;
 import com.atlassian.jira.rest.client.JiraRestClient;
@@ -75,11 +83,60 @@ public class JiraConnector {
 		Iterator<Attachment> attachmentIteraor = issueDetails.get().getAttachments().iterator();
 		while (attachmentIteraor.hasNext()) {
 			Attachment attachment = attachmentIteraor.next();
-			System.out.println(attachment.getContentUri());
-			//Runtime.getRuntime().exec(new String[] { "cmd", "/c", "start chrome " + attachment.getContentUri() });
-			//Runtime.getRuntime().exec("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", new String[]{attachment.getContentUri()+""});
-			Desktop.getDesktop().browse(attachment.getContentUri());
+			System.out.println(attachment.getContentUri().toString());
+			URI attachmentURI=attachment.getContentUri();
+			System.out.println(attachmentURI.getPath());
+			// Runtime.getRuntime().exec(new String[] { "cmd", "/c", "start
+			// chrome " + attachment.getContentUri() });
+			// Runtime.getRuntime().exec("C:/Program Files
+			// (x86)/Google/Chrome/Application/chrome.exe", new
+			// String[]{attachment.getContentUri()+""});
+			 //Desktop.getDesktop().browse(attachment.getContentURI());
+
+			/*
+			 * URL url=new URL(attachment.getContentUri().toString());
+			 * ReadableByteChannel rbc=Channels.newChannel(url.openStream());
+			 * fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			 */
+
+	
+			// Make sure that this directory exists
+/*	        String dirName = "C:\\Users\\ahunjan\\Desktop";
+	        try {
+	            saveFileFromUrlWithCommonsIO(
+	                dirName + "\\java_tutorial_12345678.png", "http://localhost:8080/secure/attachment/10005/java_tutorial.png");
+	            System.out.println("finished");
+	        } catch (MalformedURLException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+*/
 		}
 
 	}
+
+	public void saveFileFromUrlWithJavaIO(String fileName, String fileUrl) throws MalformedURLException, IOException {
+		BufferedInputStream in = null;
+		FileOutputStream fout = null;
+		try {
+			in = new BufferedInputStream(new URL(fileUrl).openStream());
+			fout = new FileOutputStream(fileName);
+			byte data[] = new byte[1024];
+			int count;
+			while ((count = in.read(data, 0, 1024)) != -1) {
+				fout.write(data, 0, count);
+			}
+		} finally {
+			if (in != null)
+				in.close();
+			if (fout != null)
+				fout.close();
+		}
+	}
+	
+	public static void saveFileFromUrlWithCommonsIO(String fileName,
+	        String fileUrl) throws MalformedURLException, IOException {
+	        FileUtils.copyURLToFile(new URL(fileUrl), new File(fileName));
+	    }
 }
