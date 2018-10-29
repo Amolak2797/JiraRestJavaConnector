@@ -30,7 +30,7 @@ public class Main {
 		System.out.println(excelReader.getJiraIssues());
 		
 		HashSet<String> jiraIssueSet=new HashSet<>();
-		jiraIssueSet.add("JIR-1");
+		jiraIssueSet.add("COCAP-2980");
 		JiraConnector jc=new JiraConnector(hostName,username,password);
 		
 		Iterator<String> jiraIssueIterator=jiraIssueSet.iterator();
