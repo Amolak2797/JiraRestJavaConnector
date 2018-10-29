@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception{
 		
-		String propertiesFileName=System.getProperty("user.home")+"\\config.properties";
+		String propertiesFileName=System.getProperty("user.home")+"/config.properties";
 		
 		System.out.println(propertiesFileName);
 		Properties prop=new Properties();
