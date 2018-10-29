@@ -27,10 +27,9 @@ public class Main {
 		System.out.println(hostName+"\t"+username+"\t"+password+"\t"+handOffFileName);
 				
 		HandOffExcelReader excelReader=new HandOffExcelReader(handOffFileName);
-		System.out.println(excelReader.getJiraIssues());
+		HashSet<String> jiraIssueSet=(HashSet<String>) excelReader.getJiraIssues();
 		
-		HashSet<String> jiraIssueSet=new HashSet<>();
-		jiraIssueSet.add("COCAP-2980");
+		
 		JiraConnector jc=new JiraConnector(hostName,username,password);
 		
 		Iterator<String> jiraIssueIterator=jiraIssueSet.iterator();

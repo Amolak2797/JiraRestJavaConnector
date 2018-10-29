@@ -101,21 +101,28 @@ public class JiraConnector {
 
 	
 			// Make sure that this directory exists
-/*	        String dirName = "C:\\Users\\ahunjan\\Desktop";
+	        String dirName = "C:\\Users\\ahunjan\\Desktop";
 	        try {
-	            saveFileFromUrlWithCommonsIO(
-	                dirName + "\\java_tutorial_12345678.png", "http://localhost:8080/secure/attachment/10005/java_tutorial.png");
+	            saveFileFromUrlWithJavaIO(
+	                dirName + "\\java_tutorial_12345678.xlsx",attachment.getContentUri().toString());
 	            System.out.println("finished");
 	        } catch (MalformedURLException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-*/
+
 		}
 
 	}
-
+	
+	
+/*	public static void download(String url, String fileName) throws Exception {
+		    try (InputStream in = URI.create(url).toURL().openStream()) {
+		        Files.copy(in, Paths.get(fileName));
+		    }
+		}  
+*/
 	public void saveFileFromUrlWithJavaIO(String fileName, String fileUrl) throws MalformedURLException, IOException {
 		BufferedInputStream in = null;
 		FileOutputStream fout = null;
