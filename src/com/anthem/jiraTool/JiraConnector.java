@@ -1,5 +1,6 @@
 package com.anthem.jiraTool;
 
+import java.awt.Desktop;
 //import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -91,7 +92,7 @@ public class JiraConnector {
 			// Runtime.getRuntime().exec("C:/Program Files
 			// (x86)/Google/Chrome/Application/chrome.exe", new
 			// String[]{attachment.getContentUri()+""});
-			 //Desktop.getDesktop().browse(attachment.getContentURI());
+			 Desktop.getDesktop().browse(attachment.getContentUri());
 
 			/*
 			 * URL url=new URL(attachment.getContentUri().toString());
@@ -101,7 +102,7 @@ public class JiraConnector {
 
 	
 			// Make sure that this directory exists
-	        String dirName = "C:\\Users\\ahunjan\\Desktop";
+	       /* String dirName = "C:\\Users\\ahunjan\\Desktop";
 	        try {
 	            saveFileFromUrlWithJavaIO(
 	                dirName + "\\java_tutorial_12345678.xlsx",attachment.getContentUri().toString());
@@ -111,7 +112,7 @@ public class JiraConnector {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-
+*/
 		}
 
 	}
